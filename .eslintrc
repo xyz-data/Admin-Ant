@@ -16,6 +16,20 @@
                 "allowTernary": true
             }
         ],
+        "space-before-blocks": [1, {
+            "functions": "never",
+            "keywords": "never",
+            "classes": "always"
+        }],
+        "keyword-spacing": [1, {
+            "overrides": {
+                "if": { "before": false, "after": false },
+                "for": { "before": false, "after": false },
+                "while": { "before": false, "after": false },
+                "classes": { "before": true, "after": true }
+            }
+        }],
+        "no-else-return": [0, "never"],
         "arrow-body-style": [0, "never"],
         "func-names": 0,
         "prefer-const": 0,
