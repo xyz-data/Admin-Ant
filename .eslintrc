@@ -7,7 +7,8 @@
         "comma-dangle": [2, "never"],
         "max-len": 0,
         "react/jsx-first-prop-new-line": 0,
-        "space-before-function-paren": [2, "always"],
+        "space-before-function-paren": [2, "never"],
+        "object-curly-spacing": [2, "never"],
         "no-unused-expressions": [
             0,
             {

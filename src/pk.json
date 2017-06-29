@@ -1,0 +1,28 @@
+{
+    "name": "app-demo",
+    "version": "1.0.1",
+    "description": "This is a react project created by xgqfrms & webgeeker 2016.10.04",
+    "main": "gulpfile.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xgqfrms/React.git"
+    },
+    "keywords": [
+        "react",
+        "xgqfrms",
+        "webgeeker",
+        "js",
+        "node",
+        "ES6",
+        "ant"
+    ],
+    "author": "xgqfrms",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/xgqfrms/React/issues"
+    },
+    "homepage": "https://github.com/xgqfrms/React#readme",
+}
