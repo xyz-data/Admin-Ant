@@ -1,7 +1,6 @@
-const { config, posts } = require('./common')
-
-const { apiPrefix } = config
-let database = posts
+const {config, posts} = require('./common');
+const {apiPrefix} = config;
+let database = posts;
 
 module.exports = {
 
@@ -24,8 +23,10 @@ module.exports = {
     }
 
     res.status(200).json({
-      data: newData.slice((page - 1) * pageSize, page * pageSize),
-      total: newData.length,
-    })
-  },
-}
+        data: newData.slice(
+            (page - 1) * pageSize, 
+            page * pageSize),
+            total: newData.length
+        })
+    }
+};
