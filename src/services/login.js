@@ -6,6 +6,6 @@ export async function login(data) {
     return request({
         url: userLogin,
         method: 'post',
-        data
+        data: ""
     });
 }
