@@ -27,11 +27,10 @@ let usersListData = Mock.mock({
     ]
 });
 
-
 let database = usersListData.data;
 
-console.log(`database = \n`, database);
-console.log(`database typeof`, typeof(database));
+// console.log(`database = \n`, database);
+// console.log(`database typeof`, typeof(database));
 
 const userPermission = {
     DEFAULT: [
@@ -46,7 +45,6 @@ const userPermission = {
 };
 
 // get user info & auth
-
 
 const adminUsers = [
     {
@@ -94,7 +92,7 @@ const NOTFOUND = {
 }
 
 module.exports = {
-    [`POST ${apiPrefix}/user/login`] (req, res) {
+    [`POST ${apiPrefix}/user/login`](req, res){
         const {username, password} = req.body;
         const user = adminUsers.filter((item) => item.username === username);
         if (user.length > 0 && user[0].password === password) {
@@ -118,11 +116,11 @@ module.exports = {
             res.status(400).end();
         }
     },
-    [`GET ${apiPrefix}/user/logout`] (req, res) {
+    [`GET ${apiPrefix}/user/logout`](req, res){
         res.clearCookie('token');
         res.status(200).end();
     },
-    [`GET ${apiPrefix}/user`] (req, res) {
+    [`GET ${apiPrefix}/user`](req, res){
         const cookie = req.headers.cookie || '';
         const cookies = qs.parse(cookie.replace(/\s/g, ''), { delimiter: ';' });
         const response = {};
@@ -146,7 +144,7 @@ module.exports = {
         response.user = user;
         res.json(response);
     },
-    [`GET ${apiPrefix}/users`] (req, res) {
+    [`GET ${apiPrefix}/users`](req, res){
         const { query } = req;
         let { pageSize, page, ...other } = query;
         pageSize = pageSize || 10;
@@ -178,61 +176,53 @@ module.exports = {
             total: newData.length
         });
     },
-    [`DELETE ${apiPrefix}/users`] (req, res) {
-        const { ids } = req.body;
+    [`DELETE ${apiPrefix}/users`](req, res){
+        const {ids} = req.body;
         database = database.filter((item) => !ids.some(_ => _ === item.id));
         res.status(204).end();
     },
-
-  [`POST ${apiPrefix}/user`] (req, res) {
-    const newData = req.body
-    newData.createTime = Mock.mock('@now')
-    newData.avatar = newData.avatar || Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1))
-    newData.id = Mock.mock('@id')
-
-    database.unshift(newData)
-
-    res.status(200).end()
-  },
-
-  [`GET ${apiPrefix}/user/:id`] (req, res) {
-    const { id } = req.params
-    const data = queryArray(database, id, 'id')
-    if (data) {
-      res.status(200).json(data)
-    } else {
-      res.status(404).json(NOTFOUND)
+    [`POST ${apiPrefix}/user`](req, res){
+        const newData = req.body;
+        newData.createTime = Mock.mock('@now');
+        newData.avatar = newData.avatar || Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1));
+        newData.id = Mock.mock('@id');
+        database.unshift(newData);
+        res.status(200).end();
+    },
+    [`GET ${apiPrefix}/user/:id`](req, res){
+        const {id} = req.params;
+        const data = queryArray(database, id, 'id');
+        if (data) {
+            res.status(200).json(data);
+        } else {
+            res.status(404).json(NOTFOUND);
+        }
+    },
+    [`DELETE ${apiPrefix}/user/:id`](req, res){
+        const { id } = req.params;
+        const data = queryArray(database, id, 'id');
+        if (data) {
+            database = database.filter((item) => item.id !== id);
+            res.status(204).end();
+        } else {
+            res.status(404).json(NOTFOUND);
+        }
+    },
+    [`PATCH ${apiPrefix}/user/:id`](req, res){
+        const {id} = req.params;
+        const editItem = req.body;
+        let isExist = false;
+        database = database.map((item) => {
+            if(item.id === id){
+                isExist = true;
+                return Object.assign({}, item, editItem);
+            }
+            return item;
+        });
+        if(isExist){
+            res.status(201).end();
+        }else{
+            res.status(404).json(NOTFOUND);
+        }
     }
-  },
-
-  [`DELETE ${apiPrefix}/user/:id`] (req, res) {
-    const { id } = req.params
-    const data = queryArray(database, id, 'id')
-    if (data) {
-      database = database.filter((item) => item.id !== id)
-      res.status(204).end()
-    } else {
-      res.status(404).json(NOTFOUND)
-    }
-  },
-
-  [`PATCH ${apiPrefix}/user/:id`] (req, res) {
-    const { id } = req.params
-    const editItem = req.body
-    let isExist = false
-
-    database = database.map((item) => {
-      if (item.id === id) {
-        isExist = true
-        return Object.assign({}, item, editItem)
-      }
-      return item
-    })
-
-    if (isExist) {
-      res.status(201).end()
-    } else {
-      res.status(404).json(NOTFOUND)
-    }
-  },
 };
