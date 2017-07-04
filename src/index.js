@@ -5,7 +5,7 @@ import createLoading from 'dva-loading';
 import {browserHistory} from 'dva/router';
 import {message} from 'antd';
 
-// 1. Initialize
+// 1. Initialize (dva)
 const app = dva(
     {
         ...createLoading(

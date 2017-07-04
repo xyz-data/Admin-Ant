@@ -70,7 +70,7 @@ export default {
         }
     },
     reducers: {
-        querySuccess (state, { payload: user }) {
+        querySuccess (state, {payload: user}) {
             return {
                 ...state,
                 user
@@ -102,7 +102,7 @@ export default {
                 isNavbar: payload
             };
         },
-        handleNavOpenKeys (state, { payload: navOpenKeys }) {
+        handleNavOpenKeys (state, {payload: navOpenKeys}) {
             return {
                 ...state,
                 ...navOpenKeys
