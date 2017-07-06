@@ -1,9 +1,14 @@
-import React from 'react'
-import styles from './Footer.less'
-import { config } from '../../utils'
+import React from 'react';
+import styles from './Footer.less';
+import {config} from '../../utils';
 
-const Footer = () => <div className={styles.footer}>
-  {config.footerText}
-</div>
+const Footer = () => {
+    return(
+        <div className={styles.footer}>
+            {config.footerText}
+        </div>
+    );
+};
 
-export default Footer
+export {Footer};
+export default Footer;

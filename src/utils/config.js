@@ -9,7 +9,7 @@ module.exports = {
     iconFontCSS: '/iconfont.css',
     iconFontJS: '/iconfont.js',
     YQL: ['http://www.zuimeitianqi.com'],
-    CORS: ['http://localhost:7000'],
+    CORS: ['http://localhost:8888'],
     openPages: ['/login'],
     apiPrefix: '/api/v1',
     api: {

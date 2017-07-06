@@ -170,7 +170,7 @@ export default {
         },
         sales: [],
         quote: {
-            avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236'
+            avatar: 'https://avatars1.githubusercontent.com/u/7291672?v=3&s=84'
         },
         numbers: [],
         recentSales: [],
@@ -179,7 +179,7 @@ export default {
         browser: [],
         cpu: {},
         user: {
-            avatar: 'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236'
+            avatar: 'https://avatars1.githubusercontent.com/u/7291672?v=3&s=84'
         }
     },
     subscriptions: {
