@@ -6,11 +6,25 @@ import {Dropdown, Button, Icon, Menu} from 'antd';
 const DropOption = ({onMenuClick, menuOptions = [], buttonStyle, dropdownProps}) => {
     // 列出 menu 所有的 items
     const menuItems = menuOptions.map(
-        (item) => (
-            <Menu.Item key={item.key}>
-                {item.name}
-            </Menu.Item>
-        )
+        (item) => {
+            // console.log(`item `, item);
+            // console.log(`item.key `, item.key);
+            // console.log(`typeof item.key `, typeof(item.key));
+            // if(item.key === "2" || item.name === "删除")
+            if(item.name === "删除"){
+                return(
+                    <Menu.Item key={item.key} style={{color: "red", border: '1px solid red', borderRadius: '5px', textAlign: 'center'}}>
+                        {item.name}
+                    </Menu.Item>
+                )
+            }else{
+                return(
+                    <Menu.Item key={item.key} style={{color: "#000", border: '1px solid #ccc', borderRadius: '5px', textAlign: 'center'}}>
+                        {item.name}
+                    </Menu.Item>
+                )
+            }
+        }
     );
     // if delete & css red color
     // <li class="ant-dropdown-menu-item-selected ant-dropdown-menu-item" role="menuitem" aria-selected="true">删除</li>
@@ -37,6 +51,7 @@ const DropOption = ({onMenuClick, menuOptions = [], buttonStyle, dropdownProps})
                     {menuItems}
                 </Menu>
             }
+            trigger={['click','hover']}
             {...dropdownProps}
             >
             <Button

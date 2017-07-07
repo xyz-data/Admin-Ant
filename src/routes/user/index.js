@@ -19,6 +19,7 @@ const User = ({ location, dispatch, user, loading }) => {
         isMotion,
         selectedRowKeys
     } = user;
+
     const {pageSize} = pagination;
 
     const modalProps = {
@@ -52,7 +53,7 @@ const User = ({ location, dispatch, user, loading }) => {
         location,
         isMotion,
         onChange (page) {
-            const { query, pathname } = location
+            const { query, pathname } = location;
             dispatch(routerRedux.push({
                 pathname,
                 query: {
