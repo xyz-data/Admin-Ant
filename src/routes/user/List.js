@@ -5,7 +5,6 @@ import {Table, Modal} from 'antd';
 import styles from './List.less';
 import classnames from 'classnames';
 
-import AnimTableBody from '../../components/DataTable/AnimTableBody';
 
 import {DropOption} from '../../components';
 // 二次封装的 Table 下拉菜单 component
@@ -20,7 +19,7 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
             onEditItem(record);
         } else if (e.key === '2') {
             confirm({
-                title: 'Are you sure delete this record?',
+                title: '确定删除此记录吗？',
                 onOk () {
                     onDeleteItem(record.id);
                 }
@@ -43,7 +42,7 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
             render: (text, record) => (
                 <Link to={`user/${record.id}`}>
                     {
-                        `X-${text}`
+                        `A_Link ${text}`
                     }
                 </Link>
             )
@@ -112,15 +111,6 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
             }
         }
     ];
-    const getBodyWrapperProps = {
-        page: location.query.page,
-        current: tableProps.pagination.current
-    };
-    const getBodyWrapper = (body) => {
-        return(
-            isMotion ? <AnimTableBody {...getBodyWrapperProps} body={body} /> : body
-        );
-    };
     return (
         <div>
             <Table
@@ -131,7 +121,6 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
                 columns={columns}
                 simple
                 rowKey={record => record.id}
-                getBodyWrapper={getBodyWrapper}
             />
         </div>
     )

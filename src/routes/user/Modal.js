@@ -9,6 +9,7 @@ import {
     Modal,
     Cascader
 } from 'antd';
+
 import city from '../../utils/city';
 // 中国各省市名称
 
@@ -23,8 +24,10 @@ const formItemLayout = {
     }
 };
 
+// item: currentItem
+
 const modal = ({
-    item = {},
+    item,
     onOk,
     form: {
         getFieldDecorator,
@@ -50,12 +53,13 @@ const modal = ({
         ...modalProps,
         onOk: handleOk
     };
+    // 
     return (
         <Modal {...modalOpts}>
             <Form layout="horizontal">
                 <FormItem label="姓名" hasFeedback {...formItemLayout}>
                     {getFieldDecorator('name', {
-                        initialValue: item.name,
+                        initialValue: item.name + 'smg',
                         rules: [
                             {
                                 required: true,
@@ -63,8 +67,9 @@ const modal = ({
                                 max: 12,
                                 message: '姓名长度必须介于 3 到 4 个字符之间'
                             }
-                        ],
-                    })(<Input />)}
+                        ]
+                    })(<Input />)
+                    }
                 </FormItem>
                 <FormItem label="昵称" hasFeedback {...formItemLayout}>
                     {getFieldDecorator('nickName', {

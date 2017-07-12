@@ -9,7 +9,7 @@ import List from './List';
 import Filter from './Filter';
 import Modal from './Modal';
 
-const User = ({ location, dispatch, user, loading }) => {
+const User = ({location, dispatch, user, loading }) => {
     const {
         list,
         pagination,
@@ -21,7 +21,7 @@ const User = ({ location, dispatch, user, loading }) => {
     } = user;
 
     const {pageSize} = pagination;
-
+    // modal props
     const modalProps = {
         item:` 
             ${
@@ -35,17 +35,20 @@ const User = ({ location, dispatch, user, loading }) => {
         confirmLoading: loading.effects['user/update'],
         title: `
             ${modalType === 'create'
-            ? 'Create User'
-            : 'Update User'}
+            ? '创建 User'
+            : '更新 User'}
         `,
+        dataSource: list,
         wrapClassName: 'vertical-center-modal',
         onOk(data) {
+            console.log(` onOk(data) =`, data);
             dispatch({type: `user/${modalType}`, payload: data});
         },
         onCancel() {
             dispatch({type: 'user/hideModal'});
         }
     };
+    // table props
     const listProps = {
         dataSource: list,
         loading: loading.effects['user/query'],
@@ -64,12 +67,14 @@ const User = ({ location, dispatch, user, loading }) => {
             }))
         },
         onDeleteItem (id) {
+            console.log(`id`, id);
             dispatch({
                 type: 'user/delete',
                 payload: id
             })
         },
         onEditItem (item) {
+            console.log(`item`, item);
             dispatch({
                 type: 'user/showModal',
                 payload: {
@@ -150,8 +155,9 @@ const User = ({ location, dispatch, user, loading }) => {
                     <Col>
                         {`Selected ${selectedRowKeys.length} items `}
                         <Popconfirm
-                            title={'Are you sure delete these items?'}
-                            placement="left" onConfirm={handleDeleteItems}
+                            title={'你确定删除这些项目吗？'}
+                            placement="left"
+                            onConfirm={handleDeleteItems}
                             >
                             <Button
                                 type="primary"
